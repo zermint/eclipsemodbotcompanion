@@ -56,7 +56,6 @@ namespace {
 
         if (state == 2) {
             eclipse::config::set<int>("bot.state", 0);
-            notify("Replay: OFF", NotificationIcon::Info);
             return;
         }
 
@@ -80,7 +79,6 @@ namespace {
         }
 
         eclipse::config::set<int>("bot.state", 2);
-        notify("Replay: ON", NotificationIcon::Success);
     }
 
     // M + number: select the Nth replay and load it (no "Load" button needed)
@@ -104,10 +102,6 @@ namespace {
         }
 
         eclipse::config::set<std::string>("bot.selectedreplay", utils::string::pathToString(path));
-        notify(
-            fmt::format("Replay #{}: {}", index, utils::string::pathToString(path.filename().stem())),
-            NotificationIcon::Success
-        );
     }
 
     // 1..9 (top row or numpad) -> 1..9, anything else -> 0
