@@ -1,0 +1,28 @@
+name: Build Macro Hotkeys
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  build:
+    name: Windows
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the mod
+        id: build
+        uses: geode-sdk/build-geode-mod@main
+        with:
+          sdk: v5.3.0
+          build-config: Release
+
+      - name: Upload .geode file
+        uses: actions/upload-artifact@v4
+        with:
+          name: macro-hotkeys
+          path: ${{ steps.build.outputs.build-output }}/*.geode
