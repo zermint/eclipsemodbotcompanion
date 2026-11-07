@@ -18,7 +18,7 @@ jobs:
         id: build
         uses: geode-sdk/build-geode-mod@main
         with:
-          sdk: v5.3.0
+        sdk: v5.11.2
           build-config: Release
 
       - name: Upload .geode file
